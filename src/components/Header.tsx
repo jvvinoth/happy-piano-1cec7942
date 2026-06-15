@@ -6,7 +6,7 @@ const navigation = [
   { name: '私たちについて', href: '#about' },
   { name: 'レッスン', href: '#programs' },
   { name: 'ギャラリー', href: '#gallery' },
-  { name: '講師紹介', href: '#instructor' },
+  { name: '講師プロフィール', href: '/profile' },
   { name: 'お問い合わせ', href: '#contact' },
 ];
 
@@ -27,6 +27,34 @@ export const Header: React.FC = () => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     
+    // Check if it's a page navigation (starts with /)
+    if (href.startsWith('/')) {
+      window.location.hash = href;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Check if we're on profile page and trying to navigate to a section
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash === '/profile' && href.startsWith('#')) {
+      // Navigate to home first, then to section
+      window.location.hash = '';
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      }, 100);
+      return;
+    }
+
+    // Handle anchor navigation on home page
     const element = document.querySelector(href);
     if (element) {
       const offset = 80;
@@ -38,6 +66,13 @@ export const Header: React.FC = () => {
         behavior: 'smooth',
       });
     }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -52,8 +87,8 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, '#hero')}
+            href="/"
+            onClick={handleLogoClick}
             className="font-serif text-2xl font-semibold text-primary tracking-tight hover:opacity-80 transition-opacity"
           >
             Happy Piano
