@@ -31,7 +31,7 @@ export const ProfilePage: React.FC = () => {
                   <img
                     src={profile.imageUrl}
                     alt={`${profile.heading} - Happy Piano講師`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-[65%_20%]"
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full -z-10" />
