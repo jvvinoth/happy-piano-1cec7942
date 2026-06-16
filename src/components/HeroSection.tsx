@@ -54,42 +54,59 @@ export const HeroSection: React.FC = () => {
       />
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 w-full pt-20">
-        <div className="max-w-3xl">
-          {/* Headline */}
-          <h1
-            data-reveal
-            className="font-serif text-5xl md:text-7xl font-medium text-primary leading-[1.1] tracking-tight opacity-0 translate-y-8 transition-all duration-700 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
-          >
-            {hero.headline.split('\n').map((line, i) => (
-              <React.Fragment key={i}>
-                {line}
-                {i < hero.headline.split('\n').length - 1 && <br />}
-              </React.Fragment>
-            ))}
-          </h1>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="max-w-3xl">
+            {/* Headline */}
+            <h1
+              data-reveal
+              className="font-serif text-5xl md:text-7xl font-medium text-primary leading-[1.1] tracking-tight opacity-0 translate-y-8 transition-all duration-700 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+            >
+              {hero.headline.split('\n').map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < hero.headline.split('\n').length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </h1>
 
-          {/* Subtext */}
-          <p
-            data-reveal
-            className="mt-6 text-lg md:text-xl text-text-muted max-w-[560px] leading-relaxed opacity-0 translate-y-8 transition-all duration-700 delay-100 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
-          >
-            {hero.subtext.split('\n').map((line, i) => (
-              <React.Fragment key={i}>
-                {line}
-                {i < hero.subtext.split('\n').length - 1 && <br />}
-              </React.Fragment>
-            ))}
-          </p>
+            {/* Subtext */}
+            <p
+              data-reveal
+              className="mt-6 text-lg md:text-xl text-text-muted max-w-[560px] leading-relaxed opacity-0 translate-y-8 transition-all duration-700 delay-100 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+            >
+              {hero.subtext.split('\n').map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < hero.subtext.split('\n').length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </p>
 
-          {/* CTA Button */}
-          <a
-            href={hero.cta.href}
-            onClick={handleCtaClick}
+            {/* CTA Button */}
+            <a
+              href={hero.cta.href}
+              onClick={handleCtaClick}
+              data-reveal
+              className="inline-block mt-10 px-8 py-4 bg-accent text-white rounded-full text-base font-medium hover:bg-accent-hover hover:scale-[1.02] hover:shadow-lg transition-all duration-300 opacity-0 translate-y-8 delay-200 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+            >
+              {hero.cta.text}
+            </a>
+          </div>
+
+          {/* Piano Image */}
+          <div
             data-reveal
-            className="inline-block mt-10 px-8 py-4 bg-accent text-white rounded-full text-base font-medium hover:bg-accent-hover hover:scale-[1.02] hover:shadow-lg transition-all duration-300 opacity-0 translate-y-8 delay-200 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+            className="relative opacity-0 translate-y-8 transition-all duration-700 delay-300 data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
           >
-            {hero.cta.text}
-          </a>
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=1600&q=80"
+                alt="エレガントなピアノ - Happy Pianoのレッスン空間"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none" />
+            </div>
+          </div>
         </div>
       </div>
 
